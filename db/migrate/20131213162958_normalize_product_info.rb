@@ -1,6 +1,7 @@
 class NormalizeProductInfo < ActiveRecord::Migration
   def up
     add_column :sales, :product_id, :integer
+    Sale.reset_column_information
     Sale.find_each do |sale|
       product = Product.find_or_create_by(name: sale.product_name)
       sale.product = product

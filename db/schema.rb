@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20131213221437) do
 
   create_table "customers", force: true do |t|
     t.string   "name"
-    t.integer  "account_no"
+    t.string   "account_no"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

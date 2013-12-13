@@ -1,6 +1,7 @@
 class NormalizeEmployeeInfo < ActiveRecord::Migration
   def up
     add_column :sales, :employee_id, :integer
+    Sale.reset_column_information
     Sale.find_each do |sale|
       new_employee_name = format_employee(sale.attributes["employee"])
       employee = Employee.find_or_create_by(name: "#{new_employee_name[0]} #{new_employee_name[1]}", email: new_employee_name[2])

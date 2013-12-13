@@ -1,6 +1,7 @@
 class NormalizeCustomerInfo < ActiveRecord::Migration
   def up
     add_column :sales, :customer_id, :integer
+    Sale.reset_column_information
     Sale.find_each do |sale|
       new_customer_name = format_customer(sale.attributes["customer_and_account_no"])
       customer = Customer.find_or_create_by(name: new_customer_name[0], account_no: new_customer_name[1])
@@ -20,6 +21,6 @@ class NormalizeCustomerInfo < ActiveRecord::Migration
   end
 
   def format_customer(customer)
-    employee.gsub(/[()]/, "").split(' ')
+    customer.gsub(/[()]/, "").split(' ')
   end
 end
