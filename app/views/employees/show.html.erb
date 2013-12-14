@@ -1,0 +1,31 @@
+<h1><%= @employee.name%></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sale Amount</th>
+      <th>Units Sold</th>
+      <th>Price Per Unit</th>
+      <th>Sale Date</th>
+      <th>Invoice No.</th>
+      <th>Invoice Frequency</th>
+      <th>Product Name</th>
+      <th>Customer Name</th>          
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employee.sales.order("sale_amount DESC").each do |sale| %>
+      <tr>
+        <td><%= sale.sale_amount %></td>
+        <td><%= sale.units_sold %></td>
+        <td><%= (sale.sale_amount / sale.units_sold).round(2) %></td>
+        <td><%= sale.sale_date %></td>
+        <td><%= sale.invoice_no %></td>
+        <td><%= sale.invoice_frequency %></td>
+        <td><%= sale.product.name %></td>
+        <td><%= sale.customer.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

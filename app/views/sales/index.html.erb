@@ -1,0 +1,33 @@
+<h1>Sales</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sale Date</th>
+      <th>Sale Amount</th>
+      <th>Price Per Unit</th>
+      <th>Units Sold</th>
+      <th>Invoice No.</th>
+      <th>Invoice Frequency</th>
+      <th>Product Name</th>
+      <th>Employee Name</th>
+      <th>Customer Name</th>          
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sales.each do |sale| %>
+      <tr>
+        <td><%= sale.sale_date %></td>
+        <td><%= sale.sale_amount %></td>
+        <td><%= (sale.sale_amount / sale.units_sold).round(2) %></td>
+        <td><%= sale.units_sold %></td>
+        <td><%= sale.invoice_no %></td>
+        <td><%= sale.invoice_frequency %></td>
+        <td><%= sale.product.name %></td>
+        <td><%= sale.employee.name %></td>
+        <td><%= sale.customer.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
